@@ -561,6 +561,7 @@
         {
             SpeedLeft = 128;
             SpeedRight = 128;
+            IsFullSpeed = false;
 
             // Initializes thread for reading controller input
             var updater = new Timer(SerialReadSpeed);
@@ -598,7 +599,19 @@
             }
             else if (newSpeedLeft != SpeedLeft)
             {
-                SpeedLeft = newSpeedLeft;
+                if(!IsFullSpeed)
+                {
+                    if (newSpeedLeft > 150)
+                        SpeedLeft = 150;
+                    else if (newSpeedLeft < 106)
+                        SpeedLeft = 106;
+                    else
+                        SpeedLeft = newSpeedLeft;
+                }
+                else
+                {
+                    SpeedLeft = newSpeedLeft;
+                }                
                 GetModuleViewModel<NetworkingVM>().SendProtocol(new Protocol<int>((int)Motor.CommandId.LeftSpeed, SpeedLeft));
             }
             if (newSpeedRight == 128)
@@ -608,8 +621,33 @@
             }
             else if (newSpeedRight != SpeedRight)
             {
-                SpeedRight = newSpeedRight;
+                if(!IsFullSpeed)
+                {
+                    if (newSpeedRight > 150)
+                        SpeedRight = 150;
+                    else if (newSpeedRight < 106)
+                        SpeedRight = 106;
+                    else
+                        SpeedRight = newSpeedRight;
+                }
+                else
+                {
+                    SpeedRight = newSpeedRight;
+                }       
                 GetModuleViewModel<NetworkingVM>().SendProtocol(new Protocol<int>((int)Motor.CommandId.CommandedSpeedRight, SpeedRight));
+            }
+        }
+
+        public bool IsFullSpeed
+        {
+            get
+            {
+                return Model.isFullSpeed;
+            }
+            set
+            {
+                Model.isFullSpeed = value;
+                RaisePropertyChanged("IsFullSpeed");
             }
         }
 

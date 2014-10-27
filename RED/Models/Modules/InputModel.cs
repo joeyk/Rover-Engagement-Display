@@ -33,5 +33,7 @@
         internal int CurrentRawControllerSpeedRight;
         internal int SpeedLeft;
         internal int SpeedRight;
+
+        internal bool isFullSpeed;
     }
 }

@@ -15,6 +15,10 @@
                 <TextBlock Text="{Binding ConnectionStatus}" FontWeight="Bold" VerticalAlignment="Center" />
             </DockPanel>
             <DockPanel LastChildFill="True" VerticalAlignment="Top" Margin="0 0 0 5">
+                <TextBlock Text="Full Speed: " Width="100" DockPanel.Dock="Left" Margin="0 0 5 0" VerticalAlignment="Center" />
+                <CheckBox IsChecked="{Binding IsFullSpeed}" FontWeight="Bold" VerticalAlignment="Center" />
+            </DockPanel>
+            <DockPanel LastChildFill="True" VerticalAlignment="Top" Margin="0 0 0 5">
                 <TextBlock Text="Left Joystick X: " Width="100" DockPanel.Dock="Left" Margin="0 0 5 0" VerticalAlignment="Center" />
                 <TextBlock Text="{Binding JoyStick1X}" FontWeight="Bold" VerticalAlignment="Center" />
             </DockPanel>
