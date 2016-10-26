@@ -3,6 +3,7 @@
     using Caliburn.Micro;
     using ControlCenter;
     using Models;
+    using System.Diagnostics;//for debuging
 
     public class ControlCenterViewModel : Screen
     {
@@ -154,6 +155,18 @@
                 NotifyOfPropertyChange(() => GPS);
             }
         }
+        public DatabaseViewModel Database
+        {
+            get
+            {
+                return _model._database;
+            }
+            set
+            {
+                _model._database = value;
+                NotifyOfPropertyChange(() => Database);
+            }
+        }
 
         public DriveControllerModeViewModel DriveControllerMode
         {
@@ -186,6 +199,7 @@
             Input = new InputViewModel(this);
             Science = new ScienceViewModel(this);
             GPS = new GPSViewModel(this);
+            Database = new DatabaseViewModel(this);
 
             RemoveModuleState = new RemoveModuleStateViewModel(this);
             SaveModuleState = new SaveModuleStateViewModel(ModuleManager.ModuleGrid, this);
